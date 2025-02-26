@@ -31,6 +31,7 @@ class AbstractDevice(OrgMixin, BaseModel):
     _changed_checked_fields = ['name', 'group_id', 'management_ip', 'organization_id']
 
     name = models.CharField(
+        _('name'),
         max_length=64,
         unique=False,
         validators=[device_name_validator],
@@ -38,6 +39,7 @@ class AbstractDevice(OrgMixin, BaseModel):
         help_text=_('must be either a valid hostname or mac address'),
     )
     mac_address = models.CharField(
+        _('mac address'),
         max_length=17,
         db_index=True,
         unique=False,
@@ -45,6 +47,7 @@ class AbstractDevice(OrgMixin, BaseModel):
         help_text=_('primary mac address'),
     )
     key = KeyField(
+        verbose_name = _('key'),
         unique=True,
         blank=True,
         default=None,
@@ -52,6 +55,7 @@ class AbstractDevice(OrgMixin, BaseModel):
         help_text=_('unique device key'),
     )
     model = models.CharField(
+        _('model'),
         max_length=64,
         blank=True,
         db_index=True,
@@ -71,7 +75,7 @@ class AbstractDevice(OrgMixin, BaseModel):
         max_length=128,
         help_text=_('system on chip or CPU info'),
     )
-    notes = models.TextField(blank=True, help_text=_('internal notes'))
+    notes = models.TextField(_('notes'), blank=True, help_text=_('internal notes'))
     group = models.ForeignKey(
         get_model_name('config', 'DeviceGroup'),
         verbose_name=_('group'),
@@ -82,15 +86,16 @@ class AbstractDevice(OrgMixin, BaseModel):
     # these fields are filled automatically
     # with data received from devices
     last_ip = models.GenericIPAddressField(
+        _('last ip'),
         blank=True,
         null=True,
         db_index=True,
         help_text=_(
-            'indicates the IP address logged from '
-            'the last request coming from the device'
+            'indicates the IP address logged from the last request coming from the device'
         ),
     )
     management_ip = models.GenericIPAddressField(
+        _('management ip'),
         blank=True,
         null=True,
         db_index=True,

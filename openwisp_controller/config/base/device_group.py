@@ -20,8 +20,8 @@ from .config import TemplatesThrough
 
 
 class AbstractDeviceGroup(OrgMixin, TimeStampedEditableModel):
-    name = models.CharField(max_length=60, null=False, blank=False)
-    description = models.TextField(blank=True, help_text=_('internal notes'))
+    name = models.CharField(verbose_name = _('name'), max_length=60, null=False, blank=False)
+    description = models.TextField(verbose_name = _('description'), blank=True, help_text=_('internal notes'))
     templates = SortedManyToManyField(
         get_model_name('config', 'Template'),
         related_name='device_group_relations',
@@ -29,11 +29,7 @@ class AbstractDeviceGroup(OrgMixin, TimeStampedEditableModel):
         base_class=TemplatesThrough,
         blank=True,
         help_text=_(
-            'These templates are automatically assigned to the devices '
-            'that are part of the group. Default and required templates '
-            'are excluded from this list. If the group of the device is '
-            'changed, these templates will be automatically removed and '
-            'the templates of the new group will be assigned.'
+            'These templates are automatically assigned to the devices that are part of the group. Default and required templates are excluded from this list. If the group of the device is changed, these templates will be automatically removed and the templates of the new group will be assigned.'
         ),
     )
     meta_data = JSONField(
@@ -42,8 +38,7 @@ class AbstractDeviceGroup(OrgMixin, TimeStampedEditableModel):
         load_kwargs={'object_pairs_hook': collections.OrderedDict},
         dump_kwargs={'indent': 4},
         help_text=_(
-            'Group meta data, use this field to store data which is related'
-            ' to this group and can be retrieved via the REST API.'
+            'Group meta data, use this field to store data which is related to this group and can be retrieved via the REST API.'
         ),
         verbose_name=_('Metadata'),
     )
@@ -53,8 +48,7 @@ class AbstractDeviceGroup(OrgMixin, TimeStampedEditableModel):
         load_kwargs={'object_pairs_hook': collections.OrderedDict},
         dump_kwargs={'indent': 4},
         help_text=_(
-            'This field can be used to add meta data for the group'
-            ' or to add "Configuration Variables" to the devices.'
+            'This field can be used to add meta data for the group or to add Configuration Variables to the devices.'
         ),
         verbose_name=_('Configuration Variables'),
     )

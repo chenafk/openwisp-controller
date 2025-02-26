@@ -136,7 +136,8 @@ class DeviceLocationFilter(admin.SimpleListFilter):
 
 # Prepend DeviceLocationInline to config.DeviceAdminExportable
 DeviceAdminExportable.inlines.insert(1, DeviceLocationInline)
-DeviceAdminExportable.list_filter.append(DeviceLocationFilter)
+# ÔÝÊ±Òþ²Ø
+# DeviceAdminExportable.list_filter.append(DeviceLocationFilter)
 DeviceAdminExportable.resource_class = GeoDeviceResource
 reversion.register(model=DeviceLocation, follow=['device', 'location'])
 DeviceAdminExportable.add_reversion_following(follow=['devicelocation'])

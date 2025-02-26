@@ -224,7 +224,7 @@ class AbstractDeviceConnection(ConnectorMixin, TimeStampedEditableModel):
         get_model_name('config', 'Device'), on_delete=models.CASCADE
     )
     credentials = models.ForeignKey(
-        get_model_name('connection', 'Credentials'), on_delete=models.CASCADE
+        get_model_name('connection', 'Credentials'),verbose_name=_("Credentials"), on_delete=models.CASCADE
     )
     update_strategy = models.CharField(
         _('update strategy'),
@@ -234,7 +234,7 @@ class AbstractDeviceConnection(ConnectorMixin, TimeStampedEditableModel):
         blank=True,
         db_index=True,
     )
-    enabled = models.BooleanField(default=True, db_index=True)
+    enabled = models.BooleanField(verbose_name=_('Enabled'), default=True, db_index=True)
     params = JSONField(
         _('parameters'),
         default=dict,
@@ -247,9 +247,9 @@ class AbstractDeviceConnection(ConnectorMixin, TimeStampedEditableModel):
         dump_kwargs={'indent': 4},
     )
     # usability improvements
-    is_working = models.BooleanField(null=True, blank=True, default=None)
+    is_working = models.BooleanField(verbose_name=_('is working'), null=True, blank=True, default=None)
     failure_reason = models.TextField(_('reason of failure'), blank=True)
-    last_attempt = models.DateTimeField(blank=True, null=True)
+    last_attempt = models.DateTimeField(verbose_name=_('last attempt'), blank=True, null=True)
 
     class Meta:
         verbose_name = _('Device connection')

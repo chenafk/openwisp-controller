@@ -487,9 +487,9 @@ class DeviceAdmin(MultitenantAdminMixin, BaseConfigAdmin, UUIDAdmin):
     )
     list_display = [
         'name',
-        'backend',
         'group',
         'config_status',
+        'backend',
         'mac_address',
         'ip',
         'created',
@@ -498,9 +498,10 @@ class DeviceAdmin(MultitenantAdminMixin, BaseConfigAdmin, UUIDAdmin):
     list_filter = [
         'config__status',
         MultitenantOrgFilter,
-        TemplatesFilter,
-        GroupFilter,
-        'created',
+        # 暂时隐藏
+        # TemplatesFilter,
+        # GroupFilter,
+        # 'created',
     ]
     search_fields = [
         'id',
@@ -689,16 +690,16 @@ class DeviceAdmin(MultitenantAdminMixin, BaseConfigAdmin, UUIDAdmin):
     _device_status_messages = {
         'deactivate': {
             messages.SUCCESS: ngettext_lazy(
-                'The device %(devices_html)s was deactivated successfully.',
-                (
+                _('The device %(devices_html)s was deactivated successfully.'),
+                _(
                     'The following devices were deactivated successfully:'
                     ' %(devices_html)s.'
                 ),
                 'devices',
             ),
             messages.ERROR: ngettext_lazy(
-                'An error occurred while deactivating the device %(devices_html)s.',
-                (
+                _('An error occurred while deactivating the device %(devices_html)s.'),
+                _(
                     'An error occurred while deactivating the following devices:'
                     ' %(devices_html)s.'
                 ),
@@ -707,13 +708,13 @@ class DeviceAdmin(MultitenantAdminMixin, BaseConfigAdmin, UUIDAdmin):
         },
         'activate': {
             messages.SUCCESS: ngettext_lazy(
-                'The device %(devices_html)s was activated successfully.',
-                'The following devices were activated successfully: %(devices_html)s.',
+                _('The device %(devices_html)s was activated successfully.'),
+                _('The following devices were activated successfully: %(devices_html)s.'),
                 'devices',
             ),
             messages.ERROR: ngettext_lazy(
-                'An error occurred while activating the device %(devices_html)s.',
-                (
+                _('An error occurred while activating the device %(devices_html)s.'),
+                _(
                     'An error occurred while activating the following devices:'
                     ' %(devices_html)s.'
                 ),
@@ -818,6 +819,11 @@ class DeviceAdmin(MultitenantAdminMixin, BaseConfigAdmin, UUIDAdmin):
         return mngmt_ip or obj.last_ip
 
     ip.short_description = _('IP address')
+
+    def backend(self, obj):
+        return obj.backend
+
+    backend.short_description = _('backend')
 
     def config_status(self, obj):
         if obj._has_config():

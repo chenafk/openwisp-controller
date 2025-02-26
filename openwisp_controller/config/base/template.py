@@ -31,14 +31,13 @@ class AbstractTemplate(ShareableOrgMixinUniqueName, BaseConfig):
     Abstract model implementing a
     netjsonconfig template
     """
-
+    name = models.CharField(verbose_name = _('name'), max_length=64, db_index=True)
     tags = TaggableManager(
+        verbose_name = _('tags'),
         through=get_model_name('config', 'TaggedTemplate'),
         blank=True,
         help_text=_(
-            'A comma-separated list of template tags, may be used '
-            'to ease auto configuration with specific settings (eg: '
-            '4G, mesh, WDS, VPN, ecc.)'
+            'A comma-separated list of template tags, may be used to ease auto configuration with specific settings (eg: 4G, mesh, WDS, VPN, ecc.)'
         ),
     )
     vpn = models.ForeignKey(
@@ -69,9 +68,7 @@ class AbstractTemplate(ShareableOrgMixinUniqueName, BaseConfig):
         default=False,
         db_index=True,
         help_text=_(
-            'if checked, will force the assignment of this template to all the '
-            'devices of the organization (if no organization is selected, it will '
-            'be required for every device in the system)'
+            'if checked, will force the assignment of this template to all the devices of the organization (if no organization is selected, it will be required for every device in the system)'
         ),
     )
     # auto_cert naming kept for backward compatibility

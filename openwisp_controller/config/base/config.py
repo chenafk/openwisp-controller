@@ -68,16 +68,15 @@ class AbstractConfig(BaseConfig):
         blank=True,
     )
 
-    STATUS = Choices('modified', 'applied', 'error', 'deactivating', 'deactivated')
+    STATUS = Choices(_('modified'), _('applied'), _('error'), _('deactivating'), _('deactivated'))
     status = StatusField(
         _('configuration status'),
         help_text=_(
-            '"modified" means the configuration is not applied yet; \n'
-            '"applied" means the configuration is applied successfully; \n'
-            '"error" means the configuration caused issues and it was rolled back; \n'
-            '"deactivating" means the device has been deactivated and the'
-            ' configuration is being removed; \n'
-            '"deactivated" means the configuration has been removed from the device;'
+            _('"modified" means the configuration is not applied yet; \n')+
+            _('"applied" means the configuration is applied successfully; \n')+
+            _('"error" means the configuration caused issues and it was rolled back; \n')+
+            _('"deactivating" means the device has been deactivated and the configuration is being removed; \n')+
+            _('"deactivated" means the configuration has been removed from the device;')
         ),
     )
     error_reason = models.CharField(

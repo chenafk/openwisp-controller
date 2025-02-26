@@ -48,9 +48,15 @@ class AbstractVpn(ShareableOrgMixinUniqueName, BaseConfig):
     """
     Abstract VPN model
     """
+    name = models.CharField(
+        _('name'),
+        max_length=64,
+        unique=False,
+        db_index=True,
+    )
 
     host = models.CharField(
-        max_length=64, help_text=_('VPN server hostname or ip address')
+        verbose_name=_('Host'), max_length=64, help_text=_('VPN server hostname or ip address')
     )
     ca = models.ForeignKey(
         get_model_name('django_x509', 'Ca'),
@@ -67,14 +73,14 @@ class AbstractVpn(ShareableOrgMixinUniqueName, BaseConfig):
         null=True,
         on_delete=models.CASCADE,
     )
-    key = KeyField(db_index=True)
+    key = KeyField(verbose_name=_('Key'), db_index=True)
     backend = models.CharField(
         _('VPN backend'),
         choices=app_settings.VPN_BACKENDS,
         max_length=128,
         help_text=_('Select VPN configuration backend'),
     )
-    notes = models.TextField(blank=True)
+    notes = models.TextField(verbose_name=_('Notes'), blank=True)
     # optional, needed for VPNs which do not support automatic IP allocation
     subnet = models.ForeignKey(
         get_model_name('openwisp_ipam', 'Subnet'),
