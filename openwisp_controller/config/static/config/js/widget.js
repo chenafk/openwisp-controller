@@ -304,7 +304,7 @@
     };
 
     if (editor.editors.root.addproperty_button) {
-      editor.editors.root.addproperty_button.value = "Configuration Menu";
+      editor.editors.root.addproperty_button.value = gettext('Configuration Menu');
     }
     // set initial field value to the schema default
     if (setInitialValue) {

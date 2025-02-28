@@ -48,6 +48,8 @@ django.jQuery(function ($) {
       label = $el
         .find("> fieldset.module > h2, " + "> .tabular > fieldset.module > h2")
         .text();
+      // 暂时隐藏
+      if(label == 'Map' || label == '地图') return
     tabsContainer.append(
       '<li class="' +
         label.toLowerCase().replace(" ", "-") +

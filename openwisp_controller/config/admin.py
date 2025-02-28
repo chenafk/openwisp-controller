@@ -1162,6 +1162,7 @@ class TemplateAdmin(MultitenantAdminMixin, BaseConfigAdmin, SystemDefinedVariabl
             save_clones(self, user, queryset)
 
     actions = ['clone_selected_templates']
+    clone_selected_templates.short_description = _('Clone selected templates')
 
 
 if not app_settings.CONFIG_BACKEND_FIELD_SHOWN:  # pragma: nocover
