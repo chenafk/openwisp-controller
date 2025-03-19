@@ -240,7 +240,8 @@
       contextField,
       flatJsonField;
     // inject editor unless already present
-    if (!editorContainer.length) {
+    // 暂时隐藏固件，过滤
+    if (!editorContainer.length && labelText != 'Upgrade options:') {
       html = '<div class="jsoneditor-wrapper">';
       html += '<fieldset class="module aligned"><h2>' + labelText + "</h2>";
       html += '<div id="' + id + '" class="jsoneditor"></div></fieldset>';

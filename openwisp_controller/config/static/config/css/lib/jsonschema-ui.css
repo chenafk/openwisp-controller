@@ -378,6 +378,10 @@ div[data-schematype="object"]
 .jsoneditor-wrapper .grid-column[data-schemapath="root.files"] {
   margin-top: 15px;
 }
+/* 暂时隐藏 */
+.jsoneditor-wrapper .inline-group[data-schemapath="root.files"] {
+  display: none;
+}
 .jsoneditor-wrapper div.jsoneditor .modal {
   position: absolute;
   z-index: 10;

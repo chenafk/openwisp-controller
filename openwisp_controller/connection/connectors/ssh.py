@@ -116,7 +116,7 @@ class Ssh(object):
         exception = None
         addresses = self.addresses
         if not addresses:
-            raise ValueError('No valid IP addresses to initiate connections found')
+            raise ValueError(_('No valid IP addresses to initiate connections found'))
         if self.is_connected:
             # Do not establish a new connection if
             # a connection was already established.

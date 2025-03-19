@@ -49,7 +49,12 @@ django.jQuery(function ($) {
         .find("> fieldset.module > h2, " + "> .tabular > fieldset.module > h2")
         .text();
       // 暂时隐藏
-      if(label == 'Map' || label == '地图') return
+      if(label.indexOf('map') > -1 ||label.indexOf('Map') > -1 || label.indexOf('地图') > -1) return
+      if(label.indexOf('checks') > -1 ||label.indexOf('Checks') > -1 || label.indexOf('校验') > -1) return
+      if(label.indexOf('alert Settings') > -1 || label.indexOf('Alert Settings' ) > -1 || label.indexOf('警报设置') > -1) return
+      if(label.indexOf('charts') > -1 ||label.indexOf('Charts') > -1 || label.indexOf('图表') > -1) return
+      if(label.indexOf('Credentials') > -1 || label.indexOf('凭证') > -1) return
+      
     tabsContainer.append(
       '<li class="' +
         label.toLowerCase().replace(" ", "-") +
