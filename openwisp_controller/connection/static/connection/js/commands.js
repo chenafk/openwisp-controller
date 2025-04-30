@@ -265,7 +265,7 @@ function initCommandOverlay($) {
   $(function () {
     let buttonElement = `
             <div class="ow-command-submit-btn-wrapper">
-                <button class="button" id="ow-command-submit-btn">Execute Command</button>
+                <button class="button" id="ow-command-submit-btn">${gettext('Execute Command')}</button>
             </div>`;
     $("#command_set-0 > fieldset").append(buttonElement);
   });
